@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard AI - Phishing Detection System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        .shake-animation {
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-shield-alt text-3xl text-blue-300"></i>
+                    <h1 class="text-2xl font-bold">PhishGuard <span class="text-blue-300">AI</span></h1>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#" class="hover:text-blue-300 transition">Home</a>
+                    <a href="#" class="hover:text-blue-300 transition">How It Works</a>
+                    <a href="#" class="hover:text-blue-300 transition">About</a>
+                    <a href="#" class="hover:text-blue-300 transition">Contact</a>
+                </nav>
+                <button class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">AI-Powered Phishing Detection</h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Protect yourself from malicious links and emails with our advanced artificial intelligence system</p>
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input type="text" id="urlInput" placeholder="Enter URL or paste email content..." class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
+                    <button id="analyzeBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-lg transition flex items-center justify-center">
+                        <i class="fas fa-search mr-2"></i> Analyze
+                    </button>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-trash-alt text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Urban Waste Monitoring</h3>
+                    <p class="text-gray-600 text-center">IoT system using Arduino/RPi with MQTT and cloud integration to optimize waste collection routes and schedules.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">How Our AI Detects Phishing</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-link text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">URL Analysis</h3>
+                    <p class="text-gray-600 text-center">Examines domain age, SSL certificates, and suspicious patterns in URLs to identify potential threats.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-envelope text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Content Inspection</h3>
+                    <p class="text-gray-600 text-center">Analyzes email content for urgency tactics, grammatical errors, and suspicious requests.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-brain text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Machine Learning</h3>
+                    <p class="text-gray-600 text-center">Uses trained models to detect sophisticated phishing attempts based on thousands of known patterns.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-chart-line text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Stock Predictor</h3>
+                    <p class="text-gray-600 text-center">Python/Django app using Twitter API and ML to predict stock prices based on social sentiment analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section (Initially Hidden) -->
+    <section id="resultsSection" class="py-16 bg-gray-50 hidden">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden max-w-4xl mx-auto">
+                <div class="p-6 border-b">
+                    <h2 class="text-2xl font-bold text-gray-800">Analysis Results</h2>
+                    <p id="analyzedUrl" class="text-gray-600 mt-2 break-all"></p>
+                </div>
+                
+                <div class="p-6">
+                    <div id="resultContainer" class="flex items-center justify-between mb-6">
+                        <div class="flex items-center">
+                            <div id="resultIcon" class="w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-question-circle text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 id="resultTitle" class="text-xl font-semibold">Analyzing...</h3>
+                                <p id="resultDescription" class="text-gray-600">Please wait while we analyze the content</p>
+                            </div>
+                        </div>
+                        <div id="confidenceBadge" class="px-4 py-2 rounded-full text-sm font-semibold hidden">
+                            Confidence: <span id="confidenceValue">0</span>%
+                        </div>
+                    </div>
+                    
+                    <div id="detailsSection" class="hidden">
+                        <h4 class="font-bold text-gray-700 mb-3">Detailed Analysis</h4>
+                        <div id="analysisPoints" class="space-y-3">
+                            <!-- Dynamic content will be inserted here -->
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-gray-700 mb-3">Recommendations</h4>
+                            <div id="recommendations" class="bg-blue-50 border-l-4 border-blue-500 p-4">
+                                <!-- Dynamic content will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 border-t">
+                    <button id="newAnalysisBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-2 rounded-lg transition">
+                        <i class="fas fa-redo mr-2"></i> Perform New Analysis
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Phishing By The Numbers</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">36%</div>
+                    <p class="text-blue-200">of all data breaches involve phishing</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">1.5M</div>
+                    <p class="text-blue-200">new phishing sites created each month</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">74%</div>
+                    <p class="text-blue-200">of phishing attacks start with email</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">30%</div>
+                    <p class="text-blue-200">reduction in waste collection costs with smart monitoring</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-shield-alt text-blue-400 mr-2"></i> PhishGuard AI
+                    </h3>
+                    <p class="text-gray-400">Advanced AI technology to protect you from phishing attacks and online scams.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">How It Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">API Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Phishing Examples</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Security Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Report Phishing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">support@phishguard.ai</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">+1 (555) 123-4567</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 PhishGuard AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const urlInput = document.getElementById('urlInput');
+            const resultsSection = document.getElementById('resultsSection');
+            const analyzedUrl = document.getElementById('analyzedUrl');
+            const resultIcon = document.getElementById('resultIcon');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultDescription = document.getElementById('resultDescription');
+            const confidenceBadge = document.getElementById('confidenceBadge');
+            const confidenceValue = document.getElementById('confidenceValue');
+            const detailsSection = document.getElementById('detailsSection');
+            const analysisPoints = document.getElementById('analysisPoints');
+            const recommendations = document.getElementById('recommendations');
+            const newAnalysisBtn = document.getElementById('newAnalysisBtn');
+            
+            // Sample phishing indicators (in a real app, this would be server-side)
+            const phishingIndicators = [
+                { pattern: /(https?:\/\/)?([\w-]+\.)?paypal\.scam/, description: "Suspicious domain mimicking PayPal" },
+                { pattern: /(https?:\/\/)?([\w-]+\.)?amazon-security\./, description: "Potential Amazon phishing site" },
+                { pattern: /(https?:\/\/)?([\w-]+\.)?appleid\./, description: "Potential Apple ID phishing attempt" },
+                { pattern: /(https?:\/\/)?([\w-]+\.)?microsoft-support\./, description: "Potential Microsoft phishing site" },
+                { pattern: /urgent|immediate action required/i, description: "Creates false sense of urgency" },
+                { pattern: /verify your account/i, description: "Common phishing tactic" },
+                { pattern: /click here|login now/i, description: "Urgency language often used in phishing" },
+                { pattern: /(https?:\/\/)?([\w-]+\.)?([\w-]{15,}\.)/, description: "Long, complex domain name" },
+                { pattern: /(https?:\/\/)?([\w-]+\.)?([\w-]+\.[\w-]+\.[\w-]+)/, description: "Multiple subdomains can be suspicious" },
+                { pattern: /(https?:\/\/)?([\w-]+\.)?([\w-]+\.(tk|ml|ga|cf|gq))/, description: "Free domain often used by phishers" }
+            ];
+            
+            analyzeBtn.addEventListener('click', function() {
+                const input = urlInput.value.trim();
+                if (!input) {
+                    urlInput.classList.add('shake-animation');
+                    setTimeout(() => {
+                        urlInput.classList.remove('shake-animation');
+                    }, 500);
+                    return;
+                }
+                
+                // Show loading state
+                resultsSection.classList.remove('hidden');
+                analyzedUrl.textContent = input.length > 100 ? input.substring(0, 100) + '...' : input;
+                resultIcon.innerHTML = '<i class="fas fa-spinner fa-spin text-blue-500 text-2xl"></i>';
+                resultTitle.textContent = "Analyzing...";
+                resultDescription.textContent = "Our AI is examining the content for phishing indicators";
+                confidenceBadge.classList.add('hidden');
+                detailsSection.classList.add('hidden');
+                
+                // Scroll to results
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Simulate AI analysis (in a real app, this would be an API call)
+                setTimeout(() => {
+                    showResults(input);
+                }, 2000);
+            });
+            
+            newAnalysisBtn.addEventListener('click', function() {
+                resultsSection.classList.add('hidden');
+                urlInput.value = '';
+                urlInput.focus();
+            });
+            
+            function showResults(input) {
+                // Analyze the input
+                let isPhishing = false;
+                let confidence = 0;
+                const detectedPoints = [];
+                
+                phishingIndicators.forEach(indicator => {
+                    if (indicator.pattern.test(input)) {
+                        isPhishing = true;
+                        confidence += 10; // Each match increases confidence
+                        detectedPoints.push(indicator.description);
+                    }
+                });
+                
+                // Cap confidence at 95% (never 100% certain)
+                confidence = Math.min(95, confidence);
+                
+                // If no indicators found, it's probably safe
+                if (confidence < 20) {
+                    confidence = 100 - confidence; // Invert for safe results
+                }
+                
+                // Display results
+                if (isPhishing) {
+                    resultIcon.innerHTML = '<i class="fas fa-times-circle text-red-500 text-2xl"></i>';
+                    resultIcon.classList.add('bg-red-100');
+                    resultTitle.textContent = "Potential Phishing Detected!";
+                    resultDescription.textContent = "This content shows signs of a phishing attempt";
+                    confidenceBadge.classList.remove('hidden');
+                    confidenceBadge.classList.remove('bg-green-100', 'text-green-800', 'bg-yellow-100', 'text-yellow-800');
+                    confidenceBadge.classList.add('bg-red-100', 'text-red-800');
+                    confidenceValue.textContent = confidence;
+                    
+                    // Add pulse animation for dangerous result
+                    resultIcon.classList.add('pulse-animation');
+                } else {
+                    resultIcon.innerHTML = '<i class="fas fa-check-circle text-green-500 text-2xl"></i>';
+                    resultIcon.classList.add('bg-green-100');
+                    resultTitle.textContent = "No Phishing Detected";
+                    resultDescription.textContent = "This content appears to be safe";
+                    confidenceBadge.classList.remove('hidden');
+                    confidenceBadge.classList.remove('bg-red-100', 'text-red-800', 'bg-yellow-100', 'text-yellow-800');
+                    confidenceBadge.classList.add('bg-green-100', 'text-green-800');
+                    confidenceValue.textContent = confidence;
+                }
+                
+                // Show details
+                detailsSection.classList.remove('hidden');
+                analysisPoints.innerHTML = '';
+                
+                if (detectedPoints.length > 0) {
+                    detectedPoints.forEach(point => {
+                        const pointElement = document.createElement('div');
+                        pointElement.className = 'flex items-start';
+                        pointElement.innerHTML = `
+                            <i class="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-3"></i>
+                            <span>${point}</span>
+                        `;
+                        analysisPoints.appendChild(pointElement);
+                    });
+                } else {
+                    analysisPoints.innerHTML = `
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>No known phishing indicators detected</span>
+                        </div>
+                    `;
+                }
+                
+                // Add recommendations
+                recommendations.innerHTML = '';
+                if (isPhishing) {
+                    const recElement = document.createElement('div');
+                    recElement.innerHTML = `
+                        <p class="font-semibold text-blue-800">We recommend you:</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1 text-blue-700">
+                            <li>Do not click any links in this content</li>
+                            <li>Do not enter any personal information</li>
+                            <li>Report this as phishing if it came via email</li>
+                            <li>Delete this message if possible</li>
+                        </ul>
+                    `;
+                    recommendations.appendChild(recElement);
+                } else {
+                    recommendations.innerHTML = `
+                        <p class="font-semibold text-blue-800">General Safety Tips:</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1 text-blue-700">
+                            <li>Always verify sender email addresses</li>
+                            <li>Look for HTTPS and padlock icon in browser</li>
+                            <li>Be cautious with unexpected attachments</li>
+                            <li>When in doubt, contact the company directly</li>
+                        </ul>
+                    `;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
